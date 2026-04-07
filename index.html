@@ -1,66 +1,84 @@
-<style>
-  body { font-family: Arial; background: #0f172a; color: white; text-align: center; }
-  h1 { color: #38bdf8; }
-  h2 { color: #22c55e; margin-top: 40px; }
-  a { color: #fbbf24; text-decoration: none; }
-</style>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio & Business</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #0f172a; color: white; text-align: center; margin: 0; padding: 0; }
+    h1 { color: #38bdf8; margin-top: 40px; }
+    h2 { color: #22c55e; margin-top: 30px; }
+    a { color: #fbbf24; text-decoration: none; }
+    section { padding: 20px; max-width: 800px; margin: auto; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin: 10px 0; }
+    input, textarea, button { display: block; width: 100%; margin: 10px 0; padding: 10px; border-radius: 5px; border: none; }
+    input, textarea { background: #1e293b; color: white; }
+    button { background: #38bdf8; color: #0f172a; cursor: pointer; font-weight: bold; }
+    button:hover { background: #22c55e; color: white; }
+  </style>
+</head>
 <body>
-  <h1>Hi, Friends </h1>
-  <p>Welcome to my portfolio</p>
 
-  <h2>Projects</h2>
-  <ul>
-    <li>Project 1 — <a href="#">Link</a></li>
-    <li>Project 2 — <a href="#">Link</a></li>
-  </ul>
+  <!-- Portfolio Section -->
+  <section id="portfolio">
+    <h1>Hi, Friends</h1>
+    <p>Welcome to my portfolio</p>
 
-  <h2>Skills</h2>
-  <p>HTML, CSS, JavaScript</p>
+    <h2>Projects</h2>
+    <ul>
+      <li>Project 1 — <a href="#">Link</a></li>
+      <li>Project 2 — <a href="#">Link</a></li>
+    </ul>
 
-  <h2>Contact</h2>
-  <p>Email: example@gmail.com</p>
+    <h2>Skills</h2>
+    <p>HTML, CSS, JavaScript</p>
 
+    <h2>Contact</h2>
+    <p>Email: example@gmail.com</p>
+  </section>
 
-<script>
-  document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // prevent default form submission
+  <!-- Business Section -->
+  <section id="business">
+    <h1>My Business</h1>
+    <p>We provide web solutions.</p>
 
-    const formData = new FormData(this);
+    <h2>Services</h2>
+    <ul>
+      <li>Web Development</li>
+      <li>App Development</li>
+      <li>Design</li>
+    </ul>
 
-    // Send form data to your deployed serverless function
-    fetch("https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-09f01985-1c4b-4190-af96-a5cac413032c/sample/hello", {
-      method: "POST",
-      body: JSON.stringify(Object.fromEntries(formData)),
-      headers: { "Content-Type": "application/json" }
-    })
-    .then(res => res.json())
-    .then(data => alert(data.message)) // show success message
-    .catch(err => console.error(err)); // log errors
-  });
-</script>
-  
+    <h2>Clients</h2>
+    <p>Worked with XYZ company</p>
 
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required/>
+      <input type="email" name="email" placeholder="Email" required/>
+      <textarea name="message" placeholder="Message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- JavaScript for Contact Form -->
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // prevent page reload
+
+      const formData = new FormData(this);
+
+      fetch("https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-09f01985-1c4b-4190-af96-a5cac413032c/sample/hello", {
+        method: "POST",
+        body: JSON.stringify(Object.fromEntries(formData)),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.json())
+      .then(data => alert(data.message)) // show success message
+      .catch(err => console.error(err)); // log errors
+    });
+  </script>
 
 </body>
-<h1>My Business</h1>
-<p>We provide web solutions.</p>
-
-<h2>Services</h2>
-<ul>
-  <li>Web Development</li>
-  <li>App Development</li>
-  <li>Design</li>
-</ul>
-
-<h2>Clients</h2>
-<p>Worked with XYZ company</p>
-
-<h2>Contact</h2>
-<p>Email: business@example.com</p>
-<form id="contactForm">
-  <input type="text" name="name" placeholder="Your Name"/>
-  <input type="email" name="email" placeholder="Email"/>
-  <textarea name="message" placeholder="Message"></textarea>
-  <button type="submit">Send</button>
-</form>
+</html>
